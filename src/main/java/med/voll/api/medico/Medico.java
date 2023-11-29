@@ -35,4 +35,17 @@ public class Medico {
         this.especialidade = dados.especialidade();
         this.endereco = new Endereco(dados.endereco());
     }
+
+    @Override
+    public String toString() {
+        return "Medico{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", crm='" + crm + '\'' +
+                ", especialidade=" + especialidade +
+                ", endereco=" + endereco +
+                '}';
+    }
 }
