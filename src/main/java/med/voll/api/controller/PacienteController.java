@@ -14,7 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("paciente")
-public class PacienteController {
+public class    PacienteController {
 
     @Autowired
     private PacienteRepository repository;
@@ -29,22 +29,26 @@ public class PacienteController {
     }
 
     @GetMapping
-    public Page<DadosListagemPaciente> listaPaciente(@PageableDefault(size = 10,sort = {"nome"}) Pageable paginacao){
-        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
+    public ResponseEntity<Page<DadosListagemPaciente>> listaPaciente(@PageableDefault(size = 10,sort = {"nome"}) Pageable paginacao){
+        var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
+        return ResponseEntity.ok(page);
+
     }
 
     @PutMapping
     @Transactional
-    public void atualizar(@RequestBody @Valid DadosAtualizacaoPacientes dadosAtualizacaoPacientes){
+    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoPacientes dadosAtualizacaoPacientes){
         var paciente = repository.getReferenceById(dadosAtualizacaoPacientes.id());
         paciente.atualizarInformacoes(dadosAtualizacaoPacientes);
+        return ResponseEntity.ok(new DadosListagemPacienteAtualizado(paciente));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void excluir(@PathVariable Long id){
+    public ResponseEntity excluir(@PathVariable Long id){
         var paciente = repository.getReferenceById(id);
         paciente.excluir();
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
