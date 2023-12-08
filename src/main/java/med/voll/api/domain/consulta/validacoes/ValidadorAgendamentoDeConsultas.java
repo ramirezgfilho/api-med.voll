@@ -7,4 +7,5 @@ public interface ValidadorAgendamentoDeConsultas {
     void validar(DadosAgendamentoConsulta dadosAgendamentoConsulta);
 
 
+
 }
