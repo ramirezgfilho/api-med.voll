@@ -54,7 +54,7 @@ public class AgendaDeConsultas {
         if (dados.especialidade() == null){
             throw new ValidacaoException("Especialidade é obrigatoria quando médico não for escolhido.");
         }
-        return medicoRepository.escolherMedicoAleatorioLivreNaData();
+        return medicoRepository.escolherMedicoAleatorioLivreNaData(dados.especialidade(), dados.data());
     }
 
 }
