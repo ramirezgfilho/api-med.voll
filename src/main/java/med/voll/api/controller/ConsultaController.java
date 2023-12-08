@@ -1,6 +1,7 @@
 package med.voll.api.controller;
 
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import med.voll.api.domain.ValidacaoException;
 import med.voll.api.domain.consulta.*;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("consultas")
+@SecurityRequirement(name ="bearer-key")
 public class ConsultaController {
 
     @Autowired
