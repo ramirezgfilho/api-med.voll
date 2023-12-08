@@ -44,6 +44,8 @@ public class Consulta {
         this.data = data;
     }
 
+
+
     public void excluir() {
         this.ativo = false;
     }
