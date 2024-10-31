@@ -1,1 +1,1 @@
-JAVA complete REST API with authentication
+JAVA complete REST API with JWT authentication
